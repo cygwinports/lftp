@@ -1,0 +1,29 @@
+NAME="lftp"
+VERSION=4.4.10
+RELEASE=1
+CATEGORY="Net"
+SUMMARY="Sophisticated file transfer program"
+DESCRIPTION="lftp is a sophisticated file transfer program and ftp/http/bittorrent
+client.  It supports multiple network protocols.  It uses the readline library
+for input, so it offers tab completion and command history.  It has job control
+and bookmarks.  It can mirror sites and transfer multiple files in parallel.
+It keeps trying interrupted operations until it can complete them."
+HOMEPAGE="http://lftp.yar.ru/"
+SRC_URI="http://lftp.yar.ru/ftp/lftp-${VERSION}.tar.xz"
+PATCH_URI="
+	4.4.10-configure-needtrio.patch
+	4.4.10-configure-readline.patch
+"
+
+# packager-mode == do not override empty LDFLAGS with '-s'
+CYGCONF_ARGS="--with-openssl --enable-packager-mode"
+
+src_install() {
+	cd ${B}
+	# no need for libraries where !WITH_MODULES
+	cyginstall lib_LTLIBRARIES=
+
+	make_etc_defaults /etc/lftp.conf
+
+	rm -f ${D}/usr/lib/charset.alias
+}

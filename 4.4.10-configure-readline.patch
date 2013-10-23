@@ -1,0 +1,21 @@
+--- origsrc/lftp-4.4.10/m4/readline.m4	2013-03-19 07:25:50.000000000 -0500
++++ src/lftp-4.4.10/m4/readline.m4	2013-10-22 20:29:45.233937300 -0500
+@@ -12,13 +12,13 @@ AC_CACHE_VAL(lftp_cv_precompiled_readlin
+ [
+    old_LIBS="$LIBS"
+    LIBS="-lreadline $READLINE_SUPPLIB $LIBS"
+-   AC_TRY_LINK([extern int (*rl_getc_function)();],
++   AC_TRY_LINK(
++      [#include <stdio.h>
++       #include <readline/readline.h>],
+       [rl_getc_function=0;
+        rl_completion_matches(0,0);],
+-      [AC_TRY_CPP([#include <readline/readline.h>],
+-		[lftp_cv_precompiled_readline=yes],
+-		[lftp_cv_precompiled_readline=no])
+-      ],lftp_cv_precompiled_readline=no)
++      [lftp_cv_precompiled_readline=yes],
++      [lftp_cv_precompiled_readline=no])
+    LIBS="$old_LIBS"
+ ])
+    ;;

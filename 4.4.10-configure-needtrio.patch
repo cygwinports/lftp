@@ -1,0 +1,10 @@
+--- origsrc/lftp-4.4.10/m4/needtrio.m4	2013-03-19 07:25:50.000000000 -0500
++++ src/lftp-4.4.10/m4/needtrio.m4	2013-10-22 20:43:54.145492300 -0500
+@@ -9,6 +9,7 @@ AC_DEFUN([LFTP_NEED_TRIO],[
+       else
+ 
+       AC_TRY_RUN([
++	 #include <stdio.h>
+ 	 int main()
+ 	 {
+ 	    unsigned long long x=0,x1;
