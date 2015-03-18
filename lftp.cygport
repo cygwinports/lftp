@@ -21,7 +21,8 @@ CYGCONF_ARGS="--with-openssl --enable-packager-mode"
 src_install() {
 	cd ${B}
 	# no need for libraries where !WITH_MODULES
-	cyginstall lib_LTLIBRARIES=
+	# Install sample scripts under /usr/share/doc to avoid perl dep
+	cyginstall lib_LTLIBRARIES= pkgdatadir='$(docdir)/examples'
 
 	make_etc_defaults /etc/lftp.conf
 
