@@ -1,5 +1,5 @@
 NAME="lftp"
-VERSION=4.5.6
+VERSION=4.6.1
 RELEASE=1
 CATEGORY="Net"
 SUMMARY="Sophisticated file transfer program"
